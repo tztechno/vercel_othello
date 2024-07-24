@@ -22,20 +22,20 @@ export default function Match() {
     const cellClick = (row: number, col: number) => {
         //盤面変える
         const newBoard = makeBoard(board, col, row, nowPlayer);
-        if (newBoard) {
+        if(newBoard){
             setBoard(newBoard);
             setMessage('');
             skip = false;
             const winner = checkWinner(newBoard);
-            if (winner) {
+            if(winner){
                 setWinner(winner);
-            } else {
+            }else{
                 //プレイヤーチェンジ
                 setNowPlayer(nowPlayer === 'black' ? 'white' : 'black');
             }
             //プレイヤーチェンジ
-            setNowPlayer(nowPlayer === 'black' ? 'white' : 'black');
-        } else {
+            setNowPlayer(nowPlayer === 'black' ? 'white' : 'black');            
+        }else{
             setMessage('そこには置けません。')
         }
     };
@@ -53,26 +53,26 @@ export default function Match() {
      * 打つところがなかったときの処理
      */
     const onClickSkipButton = () => {
-        if (!checkPut(board, nowPlayer)) {
-            if (skip) {
+        if(!checkPut(board, nowPlayer)){
+            if(skip){
                 skip = false;
                 const winner = checkWinner(board);
-                if (winner) {
+                if(winner){
                     setWinner(winner);
                 }
-            } else {
+            }else{
                 setMessage('スキップします。');
                 skip = true;
                 setNowPlayer(nowPlayer === 'black' ? 'white' : 'black');
             }
-        } else {
+        }else{
             setMessage('置けるところがあります。');
         }
     };
-    return (
+    return(
         <div className='flex flex-col items-center'>
-            <h2 className='font-bold' style={{ fontSize: `25px` }}>二人で対戦する</h2>
-            <Board board={board} onCellClick={cellClick} />
+            <h2 className='font-bold' style={{fontSize: `25px`}}>二人で対戦する</h2>
+            <Board board={board} onCellClick={cellClick}/>
             {!winner && <p>{nowPlayer}のターン</p>}
             {!winner && <p>黒：{countPiece(board).countBlack}　　白：{countPiece(board).countWhite}</p>}
             <Button variant="destructive" asChild onClick={onClickSkipButton}>
@@ -80,7 +80,7 @@ export default function Match() {
             </Button>
             <p>{message}</p>
             {winner && <WinnerAnnouncePop winner={winner} onDismiss={handleWinnerDismiss} />}
-
+            
         </div>
     );
 }

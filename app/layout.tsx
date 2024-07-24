@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from '@/lib/utils';
+import {cn} from '@/lib/utils';
 import Link from 'next/link'
 import { Button } from "@/components/ui/button";
 
@@ -13,9 +13,9 @@ export const metadata: Metadata = {
 };
 
 const navItems = [
-  { label: 'ホーム', href: '/' },
-  { label: '二人対戦', href: '/match' },
-  { label: 'AI対戦', href: '/vsAI' },
+  { label: 'ホーム', href: '/'},
+  { label: '二人対戦', href: '/match'},
+  { label: 'AI対戦', href: '/vsAI'},
 ]
 
 export default function RootLayout({
@@ -25,23 +25,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={cn(inter.className, 'min-h-dvh')} style={{ background: `#F2F2F2`, }}>
-        <header className="container h-16 flex items-center border-b justify-between" style={{ background: `#FFF` }}>
+      <body className={cn(inter.className, 'min-h-dvh')} style={{background: `#F2F2F2`,}}>
+        <header className="container h-16 flex items-center border-b justify-between" style={{background: `#FFF`}}>
           <h1 className="font-bold">オセロウェブ</h1>
           <ul className="flex gap-4">
             {navItems.map((item => <li key={item.label}>
-
+              
               <Button variant="ghost" asChild>
                 <Link href={item.href}>{item.label}</Link>
               </Button>
             </li>))}
           </ul>
         </header>
-        {children}
+      {children}
 
-        <footer className="container sticky top-full h-16 flex items-center border-t">
-          <p>&copy; yyyyhhhh</p>
-        </footer>
+      <footer className="container sticky top-full h-16 flex items-center border-t">
+        <p>&copy; yyyyhhhh</p>
+      </footer>
       </body>
     </html>
   );
